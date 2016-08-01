@@ -1,9 +1,13 @@
-// var FileController = require('../controllers/file.server.controller');
+var InsertController = require('../api/insert');
+var DeleteController = require('../api/delete');
+var ListController = require('../api/list');
+var ChangeController = require('../api/change');
 
 module.exports = function(app){
-	app.get('/api/file/upload/key', function (req, res, next) {
-		res.send('get in config')
-		console.log('config--get')
+	app.post('/api/insert', InsertController.do);
+	app.get('/api/delete', DeleteController.do);
+	app.post('/api/change', ChangeController.do);
 
-	});
+	app.get('/api/list', ListController.list);
+	app.get('/api/detail', ListController.detail);
 };

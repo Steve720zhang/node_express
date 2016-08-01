@@ -1,14 +1,5 @@
-var express = require('express');
-var app = express();
+var app = require('./AugApiSrc/app')
 
-
-module.exports = function () {
-
-
-	require('./AugApiSrc/api/insert')(app);
-
-
-};
 var server = app.listen(8081, function () {
 
 	var host = server.address().address

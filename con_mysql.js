@@ -30,4 +30,5 @@ client.query(
       }    
     client.end();  
   }  
-); 
+);
+//node 执行js可以测试mysql的初步使用 前提是mysql的phpmyadmin已经运行

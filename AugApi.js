@@ -1,6 +1,6 @@
 var app = require('./AugApiSrc/app')
 
-var server = app.listen(8081, function () {
+var server = app.listen(9017, function () {
 
 	var host = server.address().address
 	var port = server.address().port

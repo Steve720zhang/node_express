@@ -1,0 +1,12 @@
+Mongo操作:
+1、show dbs:显示所有的数据库
+2、use zzq:切换（指定）到zzq这个数据库
+3、show collections:显示当前数据库(zzq)的所有表
+4、db.collectionName.find():显示所有的记录
+5、db.dropDatabase():删除当前数据库
+
+
+MySQL操作:
+
+
+复杂node+mongo查询实例:http://mooring.iteye.com/blog/1719901

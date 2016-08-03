@@ -96,14 +96,19 @@ module.exports = {
 					}
 					if (data) {
 						data.toArray(function (err, datas) {
+							console.log('selectOne!!!\ndatas.length:' + datas.length);
 							if (err) {
-								console.log('err !!')
+								console.log('err !!');
 								db.close();
 								throw err;
 								return;
 							}
 							db.close();
-							res.send(datas[0]);
+							if (datas.length === 0) {
+								res.send({rr: 0,r:'没有这条数据'})
+							} else {
+								res.send(datas[0]);
+							}
 						})
 					}
 				})
@@ -131,11 +136,11 @@ module.exports = {
 				collection.remove({'_id': OBid(idString)}, {justOne: true}, function (err, data) {
 					if (data) {
 						var oj = data.toJSON();
-						console.log('oj:'+oj+'-'+oj.n);
+						console.log('oj:' + oj + '-' + oj.n);
 						if (Number(oj.n) === 1) {
-							res.send({rr:1,r: '操作成功'})
+							res.send({rr: 1, r: '操作成功'})
 						} else {
-							res.send({rr:0,r: '操作失败'})
+							res.send({rr: 0, r: '操作失败'})
 						}
 						db.close()
 					}
@@ -170,16 +175,16 @@ module.exports = {
 					if (data) {
 						var oj = data.toJSON();
 						if (Number(oj.ok) === 1) {
-							res.send({rr:1,r:'操作成功'});
+							res.send({rr: 1, r: '操作成功'});
 							db.close();
 							return;
 						} else {
-							res.send({rr:0,r:'操作失败~'});
+							res.send({rr: 0, r: '操作失败~'});
 							db.close();
 							return;
 						}
 					} else {
-						res.send({rr:0,r:'操作失败!'});
+						res.send({rr: 0, r: '操作失败!'});
 						db.close();
 						return;
 					}

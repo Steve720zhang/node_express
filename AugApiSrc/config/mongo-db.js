@@ -9,7 +9,7 @@ module.exports = {
 	 * @param tableName
 	 * @param objt
 	 */
-	insertDb: function (tableName, objt) {
+	insertDb: function (tableName, objt, res) {
 		db.open(function () {
 			/* Select 'contact' collection */
 			db.collection(tableName, function (err, collection) {
@@ -17,12 +17,19 @@ module.exports = {
 					console.log('connect err!');
 					throw err;
 				}
-				console.log('collections.count()  :' + Number(collection.find().count()))
+				if (!objt.body.title) {
+					objt.body.title = '默认标题'
+				}
+				if (!objt.body.content) {
+					objt.body.content = '默认内容'
+				}
 				collection.insert(objt, function (err, data) {
 					if (data) {
 						console.log('Successfully Insert into Mongo');
+						res.send({rr:1,r:'操作成功'})
 					} else {
 						console.log('Failed to Insert in Mongo');
+						res.send({rr:0,r:'操作失败'})
 					}
 				});
 			});

@@ -7,7 +7,7 @@ module.exports = {
 	do: function (req, res) {
 		var timeNow = new Date().getTime();
 
-		console.log('\nApi: -->INSERT<--\ntitle:' + req.body.title + "\ncontent:" + req.body.content + '\ntime:' + timeTool.Format(timeNow, 'yyyy-MM-dd hh:mm:ss'));
+		console.log('\nApi: -->INSERT<--\n' + 'title:' + req.body.title + "\ncontent:" + req.body.content + '\ntime:' + timeTool.Format(timeNow, 'yyyy-MM-dd hh:mm:ss'));
 
 		var theBody = {};
 		theBody.body = {
@@ -16,7 +16,6 @@ module.exports = {
 			'date': timeTool.Format(timeNow, 'yyyy-MM-dd hh:mm:ss')
 		};
 		theBody.time = timeNow;
-		db.insertDb('table', theBody);
-		res.send(theBody);
+		db.insertDb('table', theBody,res);
 	}
 };

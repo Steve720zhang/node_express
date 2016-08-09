@@ -24,6 +24,9 @@ module.exports = {
 					objt.body.content = '默认内容'
 				}
 				collection.insert(objt, function (err, data) {
+
+					console.log('\nerr:'+JSON.parse(err)+'\ndata:'+JSON.parse(data));
+
 					if (data) {
 						console.log('Successfully Insert into Mongo');
 						res.send({rr:1,r:'操作成功'})

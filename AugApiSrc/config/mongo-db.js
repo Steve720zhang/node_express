@@ -30,13 +30,14 @@ module.exports = {
 					if (data) {
 						console.log('Successfully Insert into Mongo');
 						res.send({rr:1,r:'操作成功'})
+						db.close();
 					} else {
 						console.log('Failed to Insert in Mongo');
 						res.send({rr:0,r:'操作失败'})
+						db.close();
 					}
 				});
 			});
-			db.close();
 		})
 	},
 	/**

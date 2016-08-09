@@ -25,7 +25,7 @@ module.exports = {
 				}
 				collection.insert(objt, function (err, data) {
 
-					console.log('\nerr:'+JSON.parse(err)+'\ndata:'+JSON.parse(data));
+					console.log('\nerr:'+JSON.stringify(err)+'\ndata:'+JSON.stringify(data));
 
 					if (data) {
 						console.log('Successfully Insert into Mongo');

@@ -3,7 +3,7 @@ var mysql = require('mysql');
 var TEST_DATABASE = 'mainlist';
 var TEST_TABLE = 'zzqtable';
 
-//创建连接
+//MYSQL创建连接 实力实例示例!
 var client = mysql.createConnection({
   host: '127.0.0.1',
   user: 'root',

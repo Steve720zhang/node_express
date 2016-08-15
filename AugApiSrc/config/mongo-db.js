@@ -4,6 +4,103 @@ var mongodbServer = new mongodb.Server('localhost', 27017, {auto_reconnect: true
 var db = new mongodb.Db('zzq', mongodbServer);
 var OBid = mongodb.ObjectId;
 module.exports = {
+	login: function (tableName, object, res) {
+		db.open(function () {
+			db.collection(tableName, function (err, collection) {
+				if (err) {
+					console.log('login err')
+					res.send({rr: 0, r: '数据库无法连接'})
+					throw err;
+					db.close()
+					return;
+				}
+				collection.find({'u': object.u}, function (err, data) {
+					if (data) {
+						data.toArray(function (err, datas) {
+							if (datas.length === 1) {
+								if (datas[0].p.toString() === object.p.toString()) {
+									res.send({rr: 1, r: '登陆成功', info: datas[0],t:new Buffer(''+datas[0]._id).toString('base64')})
+									db.close()
+								} else {
+									res.send({rr: 0, r: '密码错误'})
+									db.close()
+								}
+							}
+						})
+					} else {
+						res.send({rr: 0, r: '查询失败'})
+					}
+				})
+			})
+		})
+	},
+	register: function (tableName, object, res) {
+		db.open(function () {
+			db.collection(tableName, function (err, collection) {
+				if (err) {
+					console.log('login err')
+					throw err;
+				}
+				collection.find({'u': object.u}, function (err, data) {
+					if (err) {
+						console.log('\n\nregistry----find:   err~~~~~~:' + JSON.stringify(err));
+						db.close();
+						return;
+					}
+					if (data) {
+						data.toArray(function (err, datas) {
+							console.log('\ndata~~~~~~~:length:::  ' + datas.length);
+							if (datas.length !== 0) {
+								db.close()
+								res.send({rr: 0, r: '用户名已存在！'})
+								return
+							} else {
+								collection.insert(object, function (err, data) {
+									if (data) {
+										console.log('data!!!!!:\n' + JSON.stringify(data));
+										res.send({rr: 1, r: '注册成功'})
+										db.close();
+									} else {
+										console.log('err!!!!!!:\n' + JSON.stringify(err));
+										res.send({rr: 1, r: '注册失败'})
+										db.close();
+									}
+								})
+							}
+						})
+					}
+				})
+			})
+		})
+	},
+	userInfo: function (tableName, t, res) {
+		db.open(function () {
+			db.collection(tableName, function (err, collection) {
+				if (err) {
+					console.log('login err')
+					res.send({rr: 0, r: '数据库无法连接'})
+					throw err;
+					db.close()
+					return;
+				}
+				collection.find({'_id': OBid(t)}, function (err, data) {
+					if (data) {
+						data.toArray(function (err, datas) {
+							if (datas.length === 1) {
+								res.send({rr: 1, info: datas[0]})
+								db.close()
+							} else {
+								res.send({rr: 0, r: '查无数据'})
+								db.close()
+							}
+						})
+					} else {
+						res.send({rr: 0, r: '查询失败'})
+					}
+				})
+			})
+		})
+	},
 	/**
 	 * insert接口，插入一条新数据
 	 * @param tableName
@@ -25,15 +122,13 @@ module.exports = {
 				}
 				collection.insert(objt, function (err, data) {
 
-					console.log('\nerr:'+JSON.stringify(err)+'\ndata:'+JSON.stringify(data));
-
 					if (data) {
 						console.log('Successfully Insert into Mongo');
-						res.send({rr:1,r:'操作成功'})
+						res.send({rr: 1, r: '操作成功'})
 						db.close();
 					} else {
 						console.log('Failed to Insert in Mongo');
-						res.send({rr:0,r:'操作失败'})
+						res.send({rr: 0, r: '操作失败'})
 						db.close();
 					}
 				});
@@ -116,7 +211,7 @@ module.exports = {
 							}
 							db.close();
 							if (datas.length === 0) {
-								res.send({rr: 0,r:'没有这条数据'})
+								res.send({rr: 0, r: '没有这条数据'})
 							} else {
 								res.send(datas[0]);
 							}

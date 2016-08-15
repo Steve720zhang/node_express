@@ -1,7 +1,9 @@
+
 var InsertController = require('../api/insert');
 var DeleteController = require('../api/delete');
 var ListController = require('../api/list');
 var ChangeController = require('../api/change');
+var VerifyController = require('../api/verify')
 
 module.exports = function(app){
 	app.post('/api/insert', InsertController.do);
@@ -18,4 +20,8 @@ module.exports = function(app){
 
 	app.get('/api/detail', ListController.detail);
 	//id:(int)id
+
+	app.post('/login', VerifyController.login);
+	app.post('/registry', VerifyController.registry);
+	app.post('/user/info', VerifyController.info);
 };

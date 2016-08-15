@@ -6,7 +6,6 @@ var TEST_TABLE = 'zzqmain';
 //创建连接
 
 module.exports = {
-
 	queryDb: function (tableName) {
 		var client = this.connectDb();
 		client.query('SELECT * FROM ' + tableName,

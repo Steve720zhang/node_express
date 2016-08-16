@@ -1,6 +1,6 @@
 var timeTool = require('../config/time-tool')
 
-var db = require('../config/mongo-db')
+var db = require('../DatabaseAbout/mongo-db')
 // var mysql = require('../config/mysql-db')
 
 module.exports = {

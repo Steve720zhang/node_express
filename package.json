@@ -4,13 +4,16 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-
+    "nor": "node index.js",
+    "long-run": "pm2 start index.js"
   },
   "dependencies": {
     "body-parser": "^1.15.2",
     "express": "^4.14.0",
-    "mongoose": "^4.5.7",
+    "moment": "^2.14.1",
     "mysql": "^2.11.1",
+    "sails-mongo": "^0.12.1",
+    "sails-mysql": "^0.11.5",
     "waterline": "^0.12.2"
   }
 }

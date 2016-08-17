@@ -6,13 +6,13 @@ module.exports = Waterline.Collection.extend({
 	identity: 'mainlist',
 	connection: 'mysql',
 	schema: true,
+	charset: 'utf-8',
 	attributes: {
 		//  详情主字段正文存储在mongo数据库
 		//	主id
 		id: {
 			type: 'integer',
 			unique: true,
-			required: true,
 			autoIncrement: true,
 			primaryKey: true,
 		},

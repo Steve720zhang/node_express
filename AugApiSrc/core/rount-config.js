@@ -6,6 +6,7 @@ var ChangeController = require('../api/change');
 var VerifyController = require('../api/verify');
 
 var WaterLineTest = require('../api/VerifyUsers');
+var MainList = require('../api/MainList');
 
 module.exports = function(app){
 	//  记事本增删改查：新建  删除  编辑  列表  详情
@@ -28,5 +29,9 @@ module.exports = function(app){
 	//测试用
 	app.route('/api/user/waterlineTest').post(WaterLineTest.do);
 
-
+	//  mainlist相关：list add detail
+	app.route('/api/mainlist').get(MainList.mainlist);
+	app.route('/api/mainlist/add').post(MainList.add);
+	app.route('/api/mainlist/select').post(MainList.selectDetail);
+	app.route('/api/mainlist/delete').post(MainList.deleteDetail);
 };

@@ -1,3 +1,4 @@
+
 module.exports = {
 	up: function (req, res, next) {
 		var tt = new Buffer(req.body.t, 'base64').toString();
@@ -60,5 +61,5 @@ module.exports = {
 				res.json({code: 200, count: data.length})
 			}
 		})
-	},
-}
+	}
+};

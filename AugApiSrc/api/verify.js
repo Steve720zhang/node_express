@@ -16,7 +16,7 @@ module.exports = {
 			if (err) return next(err);
 			if (data) {
 				if (String(data.p) === req.body.p) {
-					return res.json({code: 200, data: data});
+					return res.json({code: 200, data: data,t:(new Buffer('' + data.id)).toString('base64')});
 				} else {
 					return next(new Error('账号或密码错误'))
 				}

@@ -5,6 +5,7 @@ var mysqlAdapter = require('sails-mysql');
 var User = require('../schema/server.login.js');
 var MainContent = require('../schema/server.maincontent');
 var MainList = require('../schema/server.mainlist');
+var Admire = require('../schema/Admire');
 
 var wlconfig = {
 	adapters: {
@@ -31,6 +32,7 @@ var orm = new Waterline();
 orm.loadCollection(User);
 orm.loadCollection(MainContent);
 orm.loadCollection(MainList);
+orm.loadCollection(Admire);
 
 exports.wlconfig = wlconfig;
 exports.orm = orm;

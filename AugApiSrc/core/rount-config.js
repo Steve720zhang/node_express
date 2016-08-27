@@ -38,4 +38,7 @@ module.exports = function (app) {
 	app.route('/api/admire/down').post(AdmireController.down);
 	app.route('/api/admire/upcount').post(AdmireController.upcount);
 	app.route('/api/admire/downcount').post(AdmireController.downcount);
+	
+	//  评论
+	
 };

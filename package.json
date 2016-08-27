@@ -5,7 +5,7 @@
   "private": true,
   "scripts": {
     "nor": "node index.js",
-    "long-run": "pm2 start index.js"
+    "longrun": "pm2 start index.js"
   },
   "dependencies": {
     "body-parser": "^1.15.2",
